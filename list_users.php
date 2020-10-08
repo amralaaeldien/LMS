@@ -19,7 +19,7 @@
 	<?php 
 	foreach ($users as $user) {
 		foreach ($user as $key => $value) {
-			echo '<li>', $value, '</li>';
+			echo '<li>', $value , ' ', '<a href="messages_user.php?user=', $value, '">message</a>','</li>';
 		}
 	} ?>
 

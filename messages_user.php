@@ -32,10 +32,37 @@
 <html>
 <head>
 	<title>messages between you and 
-		<?php echo $other_user; ?>
+		<?php echo $other_username; ?>
 	</title>
+	<script
+  		src="https://code.jquery.com/jquery-3.5.1.min.js"
+  		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  		crossorigin="anonymous">
+  </script>
+  <script>
+  	$(document).ready(function() {
+  		$("#msg-form").submit(function(e){
+			    return false;
+			});
+  		$("button").click(function(){
+  			var message = $("input").val();
+			document.getElementById("msg-form").reset();
+  			$.post("send_message.php", {
+  				message : message,
+  				current_username : '<?php echo $current_username; ?>',
+  				other_username: '<?php echo $other_username ;?>',
+  				current_userid : '<?php echo $current_userid; ?>',
+  				other_userid: '<?php echo $other_userid ;?>'
+  			}, function(data, status){
+  				$('#messages').append(data);
+  			});
+  		});
+  	})
+  </script>
 </head>
 <body>
+		<br><a href="/index2.php">index</a><br> <br>
+
 <div id='messages'>
 	<?php 
 	foreach ($messages as $message) {
@@ -57,8 +84,8 @@
 	?>
 </div>
 <br>
-<form method="post" id="msg-form">
-	<input type="text" name="message">
+<form id="msg-form">
+	<input type="text" name="message" id='input'>
 	<button type="submit" form="msg-form" name="Send">Send</button>
 </form>
 </body>
