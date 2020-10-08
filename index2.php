@@ -1,6 +1,5 @@
 <?php 
 	session_start();
-	echo 'hello '.$_SESSION['username'].' !';
 	require('pdo.php');
 	$stmt = $conn->prepare("SELECT * from courses");
 	$executed = $stmt->execute();
@@ -15,8 +14,12 @@
  	<title>index</title>
  </head>
  <body>
+ 	<div>
+ 		Menu : <a href="list_users.php">List of users</a>
+ 	</div>
+ 	<?php  echo '<br>', 'hello '.$_SESSION['username'].' !'; ?>
+ 	<h1>courses</h1>
  <?php
- echo '<h1>courses</h1>';
  	foreach ($courses as $course) {
  		foreach ($course as $key => $value) {
  			if ($key !== 'id') {

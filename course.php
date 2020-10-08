@@ -76,7 +76,7 @@
 	 </title>
 </head>
 <body>
-	<?php echo '<br><a href="/index2.php">back</a><br> <br>' ?>
+	<br><a href="/index2.php">back</a><br> <br>
 	<?php if(isset($steps)) { ?>
 		<?php foreach ($steps as $step) {
 			foreach ($step as $key => $value) {
